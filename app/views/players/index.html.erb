@@ -1,10 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Players</h1>
-<%= form_with(url: players_path, method: "GET", data: { turbo_frame: "players", turbo_action: "advance" }) do |form| %>
+<%= form_with(url: players_path, method: "GET", data: { controller: "form-submission", turbo_frame: "players", turbo_action: "advance" }) do |form| %>
   <%= form.label :query, "Search by name:" %>
-  <%= form.text_field :query %>
-  <%= form.submit 'Search', name: nil %>
+  <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
 <% end %>
 <!-- Rendering the new partial here -->
 <%= render "players", players: @players %>
